@@ -17,7 +17,7 @@ class UActorPool : public UGameInstanceSubsystem
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Actor Pool")
-	APoolableActor* GetActor(TSubclassOf<APoolableActor> ActorToGet, const FVector Location = FVector::ZeroVector, const FRotator Rotation = FRotator::ZeroRotator);
+	APoolableActor* GetActor(const TSubclassOf<APoolableActor> ActorToGet, const FVector Location = FVector::ZeroVector, const FRotator Rotation = FRotator::ZeroRotator);
 	//templates declaration
 	template <class T>
 	T* GetActor(TSubclassOf<APoolableActor> ActorToGet);

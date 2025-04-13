@@ -27,8 +27,7 @@ APoolableActor* UActorPool::GetActor(const TSubclassOf<APoolableActor> ActorToGe
 	{
 		if (APoolableActor* PooledActor = World->SpawnActor<APoolableActor>(ActorToGet))
 		{
-			PooledActor->ActorPool = this;
-			PooledActor->Awake();
+			PooledActor->Awake(this);
 			PooledActor->OnGet(Location, Rotation);
 			return PooledActor;
 		}

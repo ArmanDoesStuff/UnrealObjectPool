@@ -5,16 +5,16 @@
 
 void APoolableActor::Release()
 {
-	if (ActorPool)
+	if (Pool)
 	{
-		ActorPool->ReleaseActor(this);
+		Pool->ReleaseActor(this);
 		SetActorState(false);
 		return;
 	}
 	Destroy();
 }
 
-void APoolableActor::OnGet(const FVector& Location = FVector::ZeroVector, const FRotator& Rotation = FRotator::ZeroRotator)
+void APoolableActor::OnGet(const FVector& Location, const FRotator& Rotation)
 {
 	SetActorState(true);
 	SetActorLocation(Location);
@@ -22,9 +22,14 @@ void APoolableActor::OnGet(const FVector& Location = FVector::ZeroVector, const 
 	OnActorGet();
 }
 
-void APoolableActor::Awake()
+void APoolableActor::Awake(UActorPool* ActorPool)
 {
+	Pool = ActorPool;
 	Root = Cast<UPrimitiveComponent>(GetRootComponent());
+	if (!Root)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Root component is invalid!"));
+	}
 }
 
 void APoolableActor::SetActorState(const bool Active)
@@ -32,5 +37,8 @@ void APoolableActor::SetActorState(const bool Active)
 	SetActorTickEnabled(Active);
 	SetActorHiddenInGame(!Active);
 	SetActorEnableCollision(Active);
-	Root->SetSimulatePhysics(Active);
+	if(Root)
+	{
+		Root->SetSimulatePhysics(Active);
+	}
 }

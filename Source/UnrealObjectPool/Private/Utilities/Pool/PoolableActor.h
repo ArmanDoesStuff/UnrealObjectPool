@@ -13,17 +13,17 @@ class APoolableActor : public AActor
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY()
-	UActorPool* ActorPool;
 	UFUNCTION(BlueprintCallable, Category = "Actor Pool")
 	virtual void Release();
-	virtual void OnGet(const FVector& Location,const FRotator& Rotation);
-	void Awake();
+	virtual void OnGet(const FVector& Location = FVector::ZeroVector, const FRotator& Rotation = FRotator::ZeroRotator);
     UFUNCTION(BlueprintImplementableEvent, Category = "Pooling")
 	void OnActorGet();
-	
+	void Awake(UActorPool* ActorPool);
+
 private:
 	void SetActorState(bool Active);
+	UPROPERTY()
+	UActorPool* Pool;
 	UPROPERTY()
 	UPrimitiveComponent* Root;
 };
