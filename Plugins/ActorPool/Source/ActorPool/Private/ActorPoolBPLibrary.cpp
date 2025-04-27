@@ -1,9 +1,22 @@
-﻿// Intellectual Property of AWAN SOFTWORKS LTD. All rights reserved
+// Copyright Epic Games, Inc. All Rights Reserved.
 
+#include "ActorPoolBPLibrary.h"
 #include "ActorPool.h"
 #include "PoolableActor.h"
 
-APoolableActor* UActorPool::GetActor(const TSubclassOf<APoolableActor> ActorToGet, const FVector Location, const FRotator Rotation)
+TMap<FString, TArray<APoolableActor*>> UActorPoolBPLibrary::Pool;
+
+UActorPoolBPLibrary::UActorPoolBPLibrary(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+{
+}
+
+void UActorPoolBPLibrary::ClearPool()
+{
+	Pool.Empty();
+}
+
+APoolableActor* UActorPoolBPLibrary::GetActor(UObject* WorldContextObject, const TSubclassOf<APoolableActor> ActorToGet, const FVector Location, const FRotator Rotation)
 {
 	if (!ActorToGet)
 	{
@@ -13,21 +26,22 @@ APoolableActor* UActorPool::GetActor(const TSubclassOf<APoolableActor> ActorToGe
 	const FString ActorType = ActorToGet->GetName();
 	if (Pool.Contains(ActorType))
 	{
-		while (Pool[ActorType].Num() > 0)
+		TArray<APoolableActor*>& ActorArray = Pool[ActorType];
+		while (ActorArray.Num() > 0)
 		{
-			if (APoolableActor* PooledActor = Pool[ActorType].Pop(); IsValid(PooledActor) && !PooledActor->
-				IsPendingKillPending())
+			APoolableActor* PooledActor = ActorArray.Pop();;
+			if (IsValid(PooledActor) && !PooledActor->IsPendingKillPending())
 			{
 				PooledActor->OnGet(Location, Rotation);
 				return PooledActor;
 			}
 		}
 	}
-	if (UWorld* World = GetWorld())
+	if (UWorld* World = WorldContextObject->GetWorld())
 	{
 		if (APoolableActor* PooledActor = World->SpawnActor<APoolableActor>(ActorToGet))
 		{
-			PooledActor->Awake(this);
+			PooledActor->Awake();
 			PooledActor->OnGet(Location, Rotation);
 			return PooledActor;
 		}
@@ -37,13 +51,13 @@ APoolableActor* UActorPool::GetActor(const TSubclassOf<APoolableActor> ActorToGe
 }
 
 
-void UActorPool::ReleaseActor(APoolableActor* ActorToRelease)
+void UActorPoolBPLibrary::ReleaseActor(APoolableActor* ActorToRelease)
 {
 	TArray<APoolableActor*>& ActorArray = Pool.FindOrAdd(ActorToRelease->GetClass()->GetName());
 	ActorArray.Add(ActorToRelease);
 }
 
-TArray<APoolableActor*> UActorPool::GetAllPooledActors()
+TArray<APoolableActor*> UActorPoolBPLibrary::GetAllPooledActors()
 {
 	TArray<APoolableActor*> AllActors;
 	for (const TTuple<FString, TArray<APoolableActor*>>& Item : Pool)

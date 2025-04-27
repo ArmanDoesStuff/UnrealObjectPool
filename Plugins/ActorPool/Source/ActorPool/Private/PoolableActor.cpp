@@ -1,17 +1,12 @@
 ﻿// Intellectual Property of AWAN SOFTWORKS LTD. All rights reserved
 
 #include "PoolableActor.h"
-#include "ActorPool.h"
+#include "ActorPoolBPLibrary.h"
 
 void APoolableActor::Release()
 {
-	if (Pool)
-	{
-		Pool->ReleaseActor(this);
-		SetActorState(false);
-		return;
-	}
-	Destroy();
+	UActorPoolBPLibrary::ReleaseActor(this);
+	SetActorState(false);
 }
 
 void APoolableActor::OnGet(const FVector& Location, const FRotator& Rotation)
@@ -22,9 +17,8 @@ void APoolableActor::OnGet(const FVector& Location, const FRotator& Rotation)
 	OnActorGet();
 }
 
-void APoolableActor::Awake(UActorPool* ActorPool)
+void APoolableActor::Awake()
 {
-	Pool = ActorPool;
 	Root = Cast<UPrimitiveComponent>(GetRootComponent());
 	if (!Root)
 	{
@@ -37,7 +31,7 @@ void APoolableActor::SetActorState(const bool Active)
 	SetActorTickEnabled(Active);
 	SetActorHiddenInGame(!Active);
 	SetActorEnableCollision(Active);
-	if(Root)
+	if (Root)
 	{
 		Root->SetSimulatePhysics(Active);
 	}

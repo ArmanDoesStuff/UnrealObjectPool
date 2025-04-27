@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "PoolableActor.generated.h"
 
-class UActorPool;
+class UPoolMaster;
 
 UCLASS()
 class APoolableActor : public AActor
@@ -18,12 +18,10 @@ public:
 	virtual void OnGet(const FVector& Location = FVector::ZeroVector, const FRotator& Rotation = FRotator::ZeroRotator);
     UFUNCTION(BlueprintImplementableEvent, Category = "Pooling")
 	void OnActorGet();
-	void Awake(UActorPool* ActorPool);
+	void Awake();
 
 private:
 	void SetActorState(bool Active);
-	UPROPERTY()
-	UActorPool* Pool;
 	UPROPERTY()
 	UPrimitiveComponent* Root;
 };
