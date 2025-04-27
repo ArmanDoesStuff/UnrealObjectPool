@@ -13,7 +13,8 @@
 		{
 			"Name": "ActorPool",
 			"Type": "Runtime",
-			"LoadingPhase": "PreLoadingScreen"
+			"LoadingPhase": "PreLoadingScreen",
+			"PlatformDenyList": []
 		}
 	],
 	"CreatedBy": "ArmanDoesStuff",
