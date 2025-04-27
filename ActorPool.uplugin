@@ -2,14 +2,9 @@
 	"FileVersion": 3,
 	"Version": 1,
 	"VersionName": "1.0",
-	"FriendlyName": "ActorPool",
-	"Description": "",
-	"Category": "Other",
-	"CreatedBy": "",
-	"CreatedByURL": "",
-	"DocsURL": "",
-	"MarketplaceURL": "",
-	"SupportURL": "",
+	"FriendlyName": "Actor Pool",
+	"Description": "Allows for actors to be released into a pool for later use, rather than destroyed.",
+	"Category": "Performance",
 	"CanContainContent": true,
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
@@ -20,5 +15,10 @@
 			"Type": "Runtime",
 			"LoadingPhase": "PreLoadingScreen"
 		}
-	]
+	],
+	"CreatedBy": "ArmanDoesStuff",
+	"CreatedByURL": "https://www.armandoesstuff.com/",
+	"DocsURL": "https://www.armandoesstuff.com/tutorial/unreal-object-pool",
+	"MarketplaceURL": "",
+	"SupportURL": ""
 }
