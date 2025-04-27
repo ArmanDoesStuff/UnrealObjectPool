@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// ArmanDoesStuff 2025
 
 #include "ActorPool.h"
 

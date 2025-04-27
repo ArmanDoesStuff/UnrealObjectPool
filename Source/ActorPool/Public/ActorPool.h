@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// ArmanDoesStuff 2025
 
 #pragma once
 
@@ -10,7 +10,6 @@ public:
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
-	static void Cleanup(UWorld* World, bool bSessionEnded, bool bCleanupResources);
 private:
 	FDelegateHandle CleanupHandle;
 };

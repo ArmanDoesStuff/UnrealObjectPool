@@ -1,7 +1,6 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// ArmanDoesStuff 2025
 
 #include "ActorPoolBPLibrary.h"
-#include "ActorPool.h"
 #include "PoolableActor.h"
 
 TMap<FString, TArray<APoolableActor*>> UActorPoolBPLibrary::Pool;

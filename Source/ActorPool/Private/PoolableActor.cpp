@@ -1,4 +1,4 @@
-﻿// Intellectual Property of AWAN SOFTWORKS LTD. All rights reserved
+﻿// ArmanDoesStuff 2025
 
 #include "PoolableActor.h"
 #include "ActorPoolBPLibrary.h"
