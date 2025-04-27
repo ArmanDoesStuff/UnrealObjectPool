@@ -13,9 +13,10 @@ class APoolableActor : public AActor
 {
 	GENERATED_BODY()
 public:
-	UFUNCTION(BlueprintCallable, Category = "Actor Pool")
+
+	UFUNCTION(BlueprintCallable, meta = (Keywords = "Actor Pool Release"), Category = "Actor Pool")
 	virtual void Release();
-	virtual void OnGet(const FVector& Location = FVector::ZeroVector, const FRotator& Rotation = FRotator::ZeroRotator);
+	virtual void GetActor(const FVector& Location = FVector::ZeroVector, const FRotator& Rotation = FRotator::ZeroRotator);
     UFUNCTION(BlueprintImplementableEvent, Category = "Pooling")
 	void OnActorGet();
 	void Awake();

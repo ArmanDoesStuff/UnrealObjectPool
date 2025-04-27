@@ -6,20 +6,18 @@
 
 #define LOCTEXT_NAMESPACE "FActorPoolModule"
 
-
 void FActorPoolModule::StartupModule()
 {
-	FWorldDelegates::OnWorldCleanup.AddStatic(&FActorPoolModule::Cleanup);
+	CleanupHandle = FWorldDelegates::OnWorldCleanup.AddStatic(&UActorPoolBPLibrary::WorldCleanup);
 }
 
 void FActorPoolModule::ShutdownModule()
 {
-	FWorldDelegates::OnWorldCleanup.RemoveAll(this);
-}
-
-void FActorPoolModule::Cleanup(UWorld* World, bool bSessionEnded, bool bCleanupResources)
-{
-	UActorPoolBPLibrary::ClearPool();
+	if (CleanupHandle.IsValid())
+	{
+		FWorldDelegates::OnWorldCleanup.Remove(CleanupHandle);
+		CleanupHandle.Reset();
+	}
 }
 
 #undef LOCTEXT_NAMESPACE

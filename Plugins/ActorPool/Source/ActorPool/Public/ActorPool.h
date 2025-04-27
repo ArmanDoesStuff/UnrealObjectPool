@@ -11,4 +11,6 @@ public:
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 	static void Cleanup(UWorld* World, bool bSessionEnded, bool bCleanupResources);
+private:
+	FDelegateHandle CleanupHandle;
 };

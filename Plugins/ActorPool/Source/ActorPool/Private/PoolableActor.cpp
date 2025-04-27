@@ -9,7 +9,7 @@ void APoolableActor::Release()
 	SetActorState(false);
 }
 
-void APoolableActor::OnGet(const FVector& Location, const FRotator& Rotation)
+void APoolableActor::GetActor(const FVector& Location, const FRotator& Rotation)
 {
 	SetActorState(true);
 	SetActorLocation(Location);

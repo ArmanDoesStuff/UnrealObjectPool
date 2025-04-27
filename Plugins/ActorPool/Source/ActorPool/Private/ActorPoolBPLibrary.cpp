@@ -11,16 +11,16 @@ UActorPoolBPLibrary::UActorPoolBPLibrary(const FObjectInitializer& ObjectInitial
 {
 }
 
-void UActorPoolBPLibrary::ClearPool()
+void UActorPoolBPLibrary::WorldCleanup(UWorld* World, bool bSessionEnded, bool bCleanupResources)
 {
 	Pool.Empty();
 }
 
-APoolableActor* UActorPoolBPLibrary::GetActor(UObject* WorldContextObject, const TSubclassOf<APoolableActor> ActorToGet, const FVector Location, const FRotator Rotation)
+APoolableActor* UActorPoolBPLibrary::GetPoolableActor(UObject* WorldContextObject, const TSubclassOf<APoolableActor> ActorToGet, const FVector Location, const FRotator Rotation)
 {
 	if (!ActorToGet)
 	{
-		UE_LOG(LogTemp, Error, TEXT("ActorPool::GetActor called with null Actor"));
+		UE_LOG(LogTemp, Error, TEXT("ActorPool::GetPoolableActor called with null Actor"));
 		return nullptr;
 	}
 	const FString ActorType = ActorToGet->GetName();
@@ -32,7 +32,7 @@ APoolableActor* UActorPoolBPLibrary::GetActor(UObject* WorldContextObject, const
 			APoolableActor* PooledActor = ActorArray.Pop();;
 			if (IsValid(PooledActor) && !PooledActor->IsPendingKillPending())
 			{
-				PooledActor->OnGet(Location, Rotation);
+				PooledActor->GetActor(Location, Rotation);
 				return PooledActor;
 			}
 		}
@@ -42,7 +42,7 @@ APoolableActor* UActorPoolBPLibrary::GetActor(UObject* WorldContextObject, const
 		if (APoolableActor* PooledActor = World->SpawnActor<APoolableActor>(ActorToGet))
 		{
 			PooledActor->Awake();
-			PooledActor->OnGet(Location, Rotation);
+			PooledActor->GetActor(Location, Rotation);
 			return PooledActor;
 		}
 	}
