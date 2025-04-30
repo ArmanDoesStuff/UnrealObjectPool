@@ -4,6 +4,7 @@
 	"VersionName": "1.0",
 	"FriendlyName": "Actor Pool",
 	"Description": "Allows for actors to be released into a pool for later use, rather than destroyed.",
+	"FabURL" : "com.epicgames.launcher://ue/Fab/product/4a49d91b-309b-47d6-bf7b-aecf4451afc1",
 	"Category": "Performance",
 	"CanContainContent": true,
 	"IsBetaVersion": false,

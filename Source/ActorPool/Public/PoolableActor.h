@@ -1,4 +1,4 @@
-﻿// ArmanDoesStuff 2025
+﻿//Copyright ArmanDoesStuff 2025
 
 #pragma once
 

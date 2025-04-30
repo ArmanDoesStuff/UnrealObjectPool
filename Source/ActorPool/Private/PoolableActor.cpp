@@ -1,4 +1,4 @@
-﻿// ArmanDoesStuff 2025
+﻿//Copyright ArmanDoesStuff 2025
 
 #include "PoolableActor.h"
 #include "ActorPoolBPLibrary.h"

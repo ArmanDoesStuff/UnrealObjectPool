@@ -1,4 +1,4 @@
-// Some copyright should be here...
+//Copyright ArmanDoesStuff 2025
 
 using UnrealBuildTool;
 
