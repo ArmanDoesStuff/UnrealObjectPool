@@ -1,6 +1,8 @@
 //Copyright ArmanDoesStuff 2025
 
 #include "ActorPoolBPLibrary.h"
+#include "Engine/World.h"
+#include "Engine/Engine.h"
 #include "PoolableActor.h"
 
 TMap<FString, TArray<APoolableActor*>> UActorPoolBPLibrary::Pool;

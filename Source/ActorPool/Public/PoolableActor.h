@@ -8,7 +8,7 @@
 
 class UPoolMaster;
 
-UCLASS(Abstract, BlueprintType, Blueprintable, meta=(ShortTooltip="An Actor that can be released to a pool for later retrieval."))
+UCLASS(BlueprintType, Blueprintable, meta=(ShortTooltip="An Actor that can be released to a pool for later retrieval."))
 class APoolableActor : public AActor
 {
 	GENERATED_BODY()

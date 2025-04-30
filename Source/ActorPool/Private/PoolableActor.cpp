@@ -1,6 +1,7 @@
 ﻿//Copyright ArmanDoesStuff 2025
 
 #include "PoolableActor.h"
+#include "Components/PrimitiveComponent.h"
 #include "ActorPoolBPLibrary.h"
 
 void APoolableActor::Release()

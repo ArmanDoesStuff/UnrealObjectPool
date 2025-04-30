@@ -49,10 +49,6 @@
 SourceArt/**/*.png
 SourceArt/**/*.tga
 
-# Binary Files
-Binaries/*
-Plugins/**/Binaries/*
-
 # Builds
 Build/*
 
@@ -73,6 +69,10 @@ Saved/*
 # Compiled source files for the engine to use
 Intermediate/*
 Plugins/**/Intermediate/*
+
+# Binary Files
+Binaries/*
+Plugins/**/Binaries/*
 
 # Cache files for the editor to use
 DerivedDataCache/*

@@ -1,7 +1,8 @@
 //Copyright ArmanDoesStuff 2025
 
 #include "ActorPool.h"
-
+#include "Engine/World.h"
+#include "Engine/Engine.h"
 #include "ActorPoolBPLibrary.h"
 
 #define LOCTEXT_NAMESPACE "FActorPoolModule"
