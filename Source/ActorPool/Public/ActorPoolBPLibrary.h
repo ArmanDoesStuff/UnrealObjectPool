@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "PoolableActor.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "ActorPoolBPLibrary.generated.h"
 
